@@ -1,3 +1,26 @@
 import UIKit
 
-var str = "Hello, playground"
+/*--------------------------------------- Задание № 1 ---------------------------------------*/
+/* Решить квадратное уравнение. ax² + bx + c = 0,
+                                      где a, b, c — некоторые числа (a ≠ 0), x — неизвестное.*/
+func quadraticEquation (a: Double, b: Double, c: Double) {
+    let D = b * b - 4 * a * c                                            // Определяем количество корней в уравнении
+    var task1 = "Задание № 1 \n"
+    if a != 0 {
+        task1 += "Если а = \(a), b = \(b) и c = \(c) \n"
+        if D > 0 {
+            task1 += "Выражение имеет два корня: \((-b + sqrt(D)) / (2 * a)) и \((-b - sqrt(D)) / (2 * a)) \n"
+        }
+        else if D == 0 {
+            task1 += "Выражение имеет один корень: \((-b + sqrt(D)) / (2 * a)) \n"
+        }
+        else if D < 0 {
+            task1 += "Корней нет \n"
+        }
+    }
+    else {
+        task1 += "a не должно ровняться 0 \n"
+    }
+    print(task1)
+}
+quadraticEquation(a: 8, b: -14, c: 5)
