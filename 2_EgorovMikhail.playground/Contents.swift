@@ -28,8 +28,7 @@ import UIKit
     }
     return text
  }
- let t: String = dividedByThree(numeric: 3)
- print("Задание № 2 \n", dividedByThree(numeric: 2), t)
+ print("Задание № 2 \n", dividedByThree(numeric: 2))
  
  /* Задание № 3 Создать возравстающий массив из 100 чисел. */
  var Array: [Int] = []
