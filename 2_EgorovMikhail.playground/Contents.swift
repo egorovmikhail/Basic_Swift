@@ -19,11 +19,9 @@ import UIKit
                 Написать функцию, которая определяет, чётное число или нет. 
   *****************************************************************************/
  func evenOrNot (numeric: Int) {
-    if numeric % 2 == 0 {
-        print("Задание № 1 \n Число \(numeric) является чётным \n")
-    } else {
-        print("Задание № 1 \n Число \(numeric) не является чётным \n")
-    }
+    numeric % 2 == 0 ?
+    print("Задание № 1 \n Число \(numeric) является чётным \n") :
+    print("Задание № 1 \n Число \(numeric) не является чётным \n")
  }
  evenOrNot(numeric: 15)
  
@@ -40,8 +38,8 @@ import UIKit
     return text
  }
  print("Задание № 2 \n",
-       dividedByThree(numeric: 2),
-       dividedByThree(numeric: 99)
+       dividedByThree(numeric: 2)
+//      ,dividedByThree(numeric: 99)
  )
  
  /******************************** Задание № 3 **********************************
