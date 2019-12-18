@@ -65,8 +65,8 @@ import UIKit
             Написать функцию, которая добавляет в массив новое число Фибоначчи
                         и добавить припомощи нее 100 элементов.
   *****************************************************************************/
- func fib(_ n: Int) -> Array<Double> {
-    var fibs: [Double] = [1, 1]
+ func fib(_ n: Int) -> Array<Decimal> {
+    var fibs: [Decimal] = [1, 1]
     (2...n).forEach { i  in
         fibs.append(fibs[i - 1] + fibs[i - 2])
      }
