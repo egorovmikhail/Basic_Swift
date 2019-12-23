@@ -19,23 +19,17 @@
 
 import UIKit
 
-
-
-
-
-
 struct avto {
 
 //    Свойства
     var brand: brandAvto
     var year: yearState
-    var trunkVolume: Int = 0
+    var trunkVolume: trunkVolumeState
     let engine: engineState
     let window: windowState
     let trunk: trunkState
-    
-
 }
+
 enum brandAvto {
     
     case Toyota(Modele: modelToyota)
@@ -44,9 +38,9 @@ enum brandAvto {
 
 enum modelToyota: String {
     case caldina = "Caldina"
-    case prado
-    case corolla
-    case sprinter
+    case prado = "Prado"
+    case corolla = "Corolla"
+    case sprinter = "Sprinter"
 }
 
 enum modelMitsubishi: String {
@@ -59,6 +53,12 @@ enum yearState: Int {
     case _1980 = 1980
     case _1990 = 1990
     case _2000 = 2000
+}
+
+enum trunkVolumeState: Int {
+    case _200 = 200
+    case _150 = 150
+    case _100 = 100
 }
 
 enum engineState: String {
@@ -78,8 +78,8 @@ enum trunkState: String {
 
 
 
-var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1970, trunkVolume: 200, engine: .start, window: .close, trunk: .load)
-var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, engine: .start, window: .close, trunk: .unload)
+var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1980, trunkVolume: ._200, engine: .stop, window: .close, trunk: .load)
+var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, trunkVolume: ._150, engine: .stop, window: .close, trunk: .unload)
 print(padjero.engine)
 print(prado.window)
 
