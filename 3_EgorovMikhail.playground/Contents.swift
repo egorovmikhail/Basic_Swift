@@ -29,8 +29,8 @@ struct avto {
     var window: windowState
     let trunk: trunkState
     
-    mutating func addwindow (countOfWins: windowState) {
-        countOfWins == windowState.close ?
+    mutating func addwindow (onOfwindow: windowState) {
+        onOfwindow == windowState.close ?
             (self.window = windowState.close) :
             (self.window = windowState.open)
     }
@@ -93,8 +93,8 @@ enum trunkState: String {
 var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1980, trunkVolume: ._200, engine: .stop, window: .close, trunk: .load)
 var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, trunkVolume: ._150, engine: .stop, window: .close, trunk: .unload)
 print(padjero.engine)
-prado.addwindow(countOfWins: .open)
+prado.addwindow(onOfwindow: .open)
 print(prado.window)
-prado.addwindow(countOfWins: .close)
+prado.addwindow(onOfwindow: .close)
 print(prado.window)
 
