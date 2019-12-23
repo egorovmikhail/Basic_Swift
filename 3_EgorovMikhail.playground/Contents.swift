@@ -21,9 +21,44 @@ import UIKit
 
 
 
-enum brandAvto: String {
-    case Toyota = "Toyota"
-    case Mitsubishi = "Mitsubishi"
+
+
+
+struct avto {
+
+//    Свойства
+    var brand: brandAvto
+    var year: yearState
+    var trunkVolume: Int = 0
+    let engine: engineState
+    let window: windowState
+    let trunk: trunkState
+    
+
+}
+enum brandAvto {
+    
+    case Toyota(Modele: modelToyota)
+    case Mitsubishi(Modele: modelMitsubishi)
+}
+
+enum modelToyota: String {
+    case caldina = "Caldina"
+    case prado
+    case corolla
+    case sprinter
+}
+
+enum modelMitsubishi: String {
+    case padjero = "Padjero"
+    case delica = "Delica"
+}
+
+enum yearState: Int {
+    case _1970 = 1970
+    case _1980 = 1980
+    case _1990 = 1990
+    case _2000 = 2000
 }
 
 enum engineState: String {
@@ -42,23 +77,10 @@ enum trunkState: String {
 }
 
 
-struct avto {
-//    Свойства
-    var brand: brandAvto
-    var model: String = ""
-    var year: Int = 0
-    var trunkVolume: Int = 0
-    let engine: engineState
-    let window: windowState
-    let trunk: trunkState    
-}
 
-
-
-
-var mitsubishi = avto(brand: .Mitsubishi, engine: .start, window: .close, trunk: .load)
-var toyota = avto(brand: .Toyota, model: "Prado", year: 2000, trunkVolume: 200, engine: .start, window: .close, trunk: .load)
-print(mitsubishi)
-print(toyota)
+var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1970, trunkVolume: 200, engine: .start, window: .close, trunk: .load)
+var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, engine: .start, window: .close, trunk: .unload)
+print(padjero.engine)
+print(prado.window)
 
 
