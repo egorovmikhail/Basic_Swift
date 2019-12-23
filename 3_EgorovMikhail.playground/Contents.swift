@@ -22,12 +22,24 @@ import UIKit
 struct avto {
 
 //    Свойства
-    var brand: brandAvto
-    var year: yearState
-    var trunkVolume: trunkVolumeState
-    let engine: engineState
-    let window: windowState
+    let brand: brandAvto
+    let year: yearState
+    let trunkVolume: trunkVolumeState
+    var engine: engineState
+    var window: windowState
     let trunk: trunkState
+    
+    mutating func addwindow (countOfWins: windowState) {
+        countOfWins == windowState.close ?
+            (self.window = windowState.close) :
+            (self.window = windowState.open)
+    }
+    
+    mutating func addengine (onOfengine: engineState) {
+        onOfengine == engineState.stop ?
+            (self.engine = engineState.stop) :
+            (self.engine = engineState.start)
+    }
 }
 
 enum brandAvto {
@@ -81,6 +93,8 @@ enum trunkState: String {
 var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1980, trunkVolume: ._200, engine: .stop, window: .close, trunk: .load)
 var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, trunkVolume: ._150, engine: .stop, window: .close, trunk: .unload)
 print(padjero.engine)
+prado.addwindow(countOfWins: .open)
 print(prado.window)
-
+prado.addwindow(countOfWins: .close)
+print(prado.window)
 
