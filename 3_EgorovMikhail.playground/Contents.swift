@@ -67,7 +67,7 @@ struct Avto {
         avto += "объём багажника \(trunkVolume.rawValue) литров, "
         avto += "\(engine.rawValue), "
         avto += "\(window.rawValue), "
-        avto += "багажник загружен на \(self.trunk.rawValue) %"
+        avto += "багажник загружен на \(trunk.rawValue) %"
         print(avto)
     }
 }
