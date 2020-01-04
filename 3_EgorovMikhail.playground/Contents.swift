@@ -19,82 +19,123 @@
 
 import UIKit
 
-struct avto {
+struct Avto {
 
 //    Свойства
-    let brand: brandAvto
+    var brand: brandAvto
     let year: yearState
     let trunkVolume: trunkVolumeState
     var engine: engineState
     var window: windowState
-    let trunk: trunkState
-    
+    var trunk: trunkLoad
+//    Метод открыть/закрыть окна
     mutating func addwindow (onOfwindow: windowState) {
-        onOfwindow == windowState.close ?
-            (self.window = windowState.close) :
-            (self.window = windowState.open)
+        onOfwindow == .close ?
+            (self.window = .close) :
+            (self.window = .open)
     }
-    
+//    Метод заглушить/запустить двигатель
     mutating func addengine (onOfengine: engineState) {
-        onOfengine == engineState.stop ?
-            (self.engine = engineState.stop) :
-            (self.engine = engineState.start)
+        onOfengine == .stop ?
+            (self.engine = .stop) :
+            (self.engine = .start)
+    }
+//    Метод загрузить/разгрузить багажник в процентах
+    mutating func addtrunk (onOftrunk: trunkLoad) {
+        switch onOftrunk {
+            case ._100:
+                self.trunk = ._100
+            case ._75:
+                self.trunk = ._75
+            case ._50:
+                self.trunk = ._50
+            case ._25:
+                self.trunk = ._25
+        }
+    }
+//    Метод вывода свойств экземпляров структур
+    func description() {
+        var avto: String = "Автомобиль: "
+        
+        switch self.brand{
+            case .Mitsubishi(let modele):
+                avto += "Mitsubishi \(modele.rawValue), "
+            case .Toyota(let modele):
+                avto += "Toyota \(modele.rawValue), "
+        }
+        avto += "год выпуска \(year.rawValue), "
+        avto += "объём багажника \(trunkVolume.rawValue) литров, "
+        avto += "\(engine.rawValue), "
+        avto += "\(window.rawValue), "
+        avto += "багажник загружен на \(self.trunk.rawValue) %"
+        print(avto)
     }
 }
-
+//      Перечисление марок автомобилей
 enum brandAvto {
-    
-    case Toyota(Modele: modelToyota)
-    case Mitsubishi(Modele: modelMitsubishi)
-}
+    case Toyota (modele: modelToyota)
+    case Mitsubishi (modele: modelMitsubishi)
 
+}
+//      Перечесление моделей марки Тойта
 enum modelToyota: String {
     case caldina = "Caldina"
     case prado = "Prado"
     case corolla = "Corolla"
     case sprinter = "Sprinter"
 }
-
+//      Перечисление моделей марки Маджеро
 enum modelMitsubishi: String {
     case padjero = "Padjero"
     case delica = "Delica"
 }
-
+//      Перечисление года выпуска автомобилей
 enum yearState: Int {
     case _1970 = 1970
     case _1980 = 1980
     case _1990 = 1990
     case _2000 = 2000
 }
-
+//      Поречисление возможных объёмов багажника
 enum trunkVolumeState: Int {
     case _200 = 200
     case _150 = 150
     case _100 = 100
 }
-
+//      Перечисления запуска/остановки двигателя
 enum engineState: String {
-    case start = "Запустить двигатель"
-    case stop = "Заглушить двигатель"
+    case start = "двигатель запущен"
+    case stop = "двигатель заглушен"
 }
-
+//      Перечисления открыть/закрыть окна
 enum windowState: String {
-    case open = "Открыть окно"
-    case close = "Закрыть окно"
+    case open = "окна открыты"
+    case close = "окна закрыты"
 }
-
-enum trunkState: String {
-    case load = "Загрузить багажник"
-    case unload = "Разгрузить багажник"
+//      Перечисления для загрузки/разгрузки багажника в %
+enum trunkLoad: Int {
+    case _25 = 25
+    case _50 = 50
+    case _75 = 70
+    case _100 = 100
 }
-
-
-
-var padjero = avto(brand: .Mitsubishi(Modele: .padjero), year: ._1980, trunkVolume: ._200, engine: .stop, window: .close, trunk: .load)
-var prado = avto(brand: .Toyota(Modele: .prado), year: ._2000, trunkVolume: ._150, engine: .stop, window: .close, trunk: .unload)
-print(padjero.engine)
-prado.addwindow(onOfwindow: .open)
-print(prado.window)
+//      Создание экземпляров структур
+var padjero = Avto(brand: .Mitsubishi(modele: .padjero), year: ._1980, trunkVolume: ._200, engine: .stop, window: .open, trunk: ._100)
+var prado = Avto(brand: .Toyota(modele: .prado), year: ._2000, trunkVolume: ._150, engine: .stop, window: .open, trunk: ._75)
+//      Изменение свойств состояния двигателя
+print(modelMitsubishi.padjero.rawValue, padjero.engine.rawValue)
+padjero.addengine(onOfengine: .start)
+print(modelMitsubishi.padjero.rawValue, padjero.engine.rawValue)
+//      Изменение свойств состояния окон
+print(modelToyota.prado.rawValue, prado.window.rawValue)
 prado.addwindow(onOfwindow: .close)
-print(prado.window)
+print(modelToyota.prado.rawValue, prado.window.rawValue)
+//      Изменение свойств состояния багажника
+print("Багажник загружен на \(prado.trunk.rawValue) %")
+prado.addtrunk(onOftrunk: ._50)
+print("Багажник загружен на \(prado.trunk.rawValue) %")
+//      Вывод значения свойств экземпляров в консоль
+padjero.description()
+prado.description()
+
 
