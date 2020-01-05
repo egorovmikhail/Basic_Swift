@@ -22,7 +22,7 @@ import UIKit
 struct Avto {
 
 //    Свойства
-    var brand: brandAvto
+    let brand: brandAvto
     let year: yearState
     let trunkVolume: trunkVolumeState
     var engine: engineState
