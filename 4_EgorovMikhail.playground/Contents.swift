@@ -13,9 +13,117 @@
 
 import UIKit
 
-protocol Car {
+class Car {
     
+    //    Свойства
+       let brand: brandAvto
+       let year: yearState
+       let trunkVolume: trunkVolumeState
+       var engine: engineState
+       var window: windowState
+       var trunk: trunkLoad
+    
+    //      Перечисление марок автомобилей
+    enum brandAvto {
+        case Toyota (modele: modelToyota)
+        case Mitsubishi (modele: modelMitsubishi)
+     }
+    //      Перечесление моделей марки Тойта
+    enum modelToyota: String {
+        case caldina = "Caldina"
+        case prado = "Prado"
+        case corolla = "Corolla"
+        case sprinter = "Sprinter"
+    }
+    //      Перечисление моделей марки Маджеро
+    enum modelMitsubishi: String {
+        case padjero = "Padjero"
+        case delica = "Delica"
+    }
+    //      Перечисление года выпуска автомобилей
+    enum yearState: Int {
+        case _1970 = 1970
+        case _1980 = 1980
+        case _1990 = 1990
+        case _2000 = 2000
+    }
+    //      Поречисление возможных объёмов багажника
+    enum trunkVolumeState: Int {
+        case _200 = 200
+        case _150 = 150
+        case _100 = 100
+    }
+    //      Перечисления запуска/остановки двигателя
+    enum engineState: String {
+        case start = "двигатель запущен"
+        case stop = "двигатель заглушен"
+    }
+    //      Перечисления открыть/закрыть окна
+    enum windowState: String {
+        case open = "окна открыты"
+        case close = "окна закрыты"
+    }
+    //      Перечисления для загрузки/разгрузки багажника в %
+    enum trunkLoad: Int {
+        case _25 = 25
+        case _50 = 50
+        case _75 = 70
+        case _100 = 100
+    }
+
+    init(brand: brandAvto, year: yearState, trunkVolume: trunkVolumeState, engine: engineState, window: windowState, trunk: trunkLoad) {
+        self.brand = brand
+        self.year = year
+        self.trunkVolume = trunkVolume
+        self.engine = engine
+        self.window = window
+        self.trunk = trunk
+    }
+//    Метод открыть/закрыть окна
+    func addwindow (onOfwindow: windowState) {
+        onOfwindow == .close ?
+            (self.window = .close) :
+            (self.window = .open)
+    }
+//    Метод заглушить/запустить двигатель
+    func addengine (onOfengine: engineState) {
+        onOfengine == .stop ?
+            (self.engine = .stop) :
+            (self.engine = .start)
+    }
+//    Метод загрузить/разгрузить багажник в процентах
+    func addtrunk (onOftrunk: trunkLoad) {
+        switch onOftrunk {
+            case ._100:
+                self.trunk = ._100
+            case ._75:
+                self.trunk = ._75
+            case ._50:
+                self.trunk = ._50
+            case ._25:
+                self.trunk = ._25
+        }
+    }
+//    Метод вывода свойств экземпляров структур
+    func description() {
+        var avto: String = "Автомобиль: "
+
+         switch self.brand{
+            case .Mitsubishi(let modele):
+                avto += "Mitsubishi \(modele.rawValue), "
+            case .Toyota(let modele):
+                avto += "Toyota \(modele.rawValue), "
+        }
+        avto += "год выпуска \(year.rawValue), "
+        avto += "объём багажника \(trunkVolume.rawValue) литров, "
+        avto += "\(engine.rawValue), "
+        avto += "\(window.rawValue), "
+        avto += "багажник загружен на \(trunk.rawValue) %"
+        print(avto)
+    }
 }
+
+var avto1 = Car(brand: .Mitsubishi(modele: .padjero), year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
 
 class trunkCar: Car {
     
@@ -24,3 +132,7 @@ class trunkCar: Car {
 class sportCar: Car {
     
 }
+
+avto1.description()
+avto1.addengine(onOfengine: .stop)
+avto1.description()
