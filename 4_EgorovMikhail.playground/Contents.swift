@@ -13,23 +13,23 @@
 
 import UIKit
 
-//      Перечисление марок автомобилей
- enum brandAvto {
-     case Toyota (modele: modelToyota)
-     case Mitsubishi (modele: modelMitsubishi)
-  }
- //      Перечесление моделей марки Тойта
- enum modelToyota: String {
-     case caldina = "Caldina"
-     case prado = "Prado"
-     case corolla = "Corolla"
-     case sprinter = "Sprinter"
- }
- //      Перечисление моделей марки Маджеро
- enum modelMitsubishi: String {
-     case padjero = "Padjero"
-     case delica = "Delica"
- }
+////      Перечисление марок автомобилей
+// enum brandAvto {
+//     case Toyota (modele: modelToyota)
+//     case Mitsubishi (modele: modelMitsubishi)
+//  }
+// //      Перечесление моделей марки Тойта
+// enum modelToyota: String {
+//     case caldina = "Caldina"
+//     case prado = "Prado"
+//     case corolla = "Corolla"
+//     case sprinter = "Sprinter"
+// }
+// //      Перечисление моделей марки Маджеро
+// enum modelMitsubishi: String {
+//     case padjero = "Padjero"
+//     case delica = "Delica"
+// }
 
 class Car {
     
@@ -84,8 +84,8 @@ class Car {
 //    Метод вывода свойств экземпляров структур
     func description() {
         var auto: String = "Автомобиль: "
-        auto += "\(brand), "
-        auto += "модель \(model), "
+        auto += "\(brand) "
+        auto += "\(model), "
         auto += "год выпуска \(year.rawValue), "
 //        avto += "объём багажника \(trunkVolume.rawValue) литров, "
         auto += "\(engine.rawValue), "
@@ -136,8 +136,8 @@ class TrunkCar: Car {
     
     override func description() {
         var auto: String = "Автомобиль: "
-            auto += "\(brand), "
-            auto += "модель \(model), "
+            auto += "\(brand) "
+            auto += "\(model), "
             auto += "год выпуска \(year.rawValue), "
             auto += "объём багажника \(trunkVolume.rawValue) литров, "
             auto += "\(engine.rawValue), "
@@ -168,8 +168,8 @@ class SportCar: Car {
     
     override func description() {
         var auto: String = "Автомобиль: "
-            auto += "\(brand), "
-            auto += "модель \(model), "
+            auto += "\(brand) "
+            auto += "\(model), "
             auto += "максимальная скорость \(maxSpeed) км/ч, "
             auto += "год выпуска \(year.rawValue), "
             auto += "привод \(drive.rawValue), "
@@ -185,8 +185,16 @@ var lancerEvolution = SportCar(brand: "Mitsubishi", model: "Lancere Evolution", 
 
 var supra = SportCar(brand: "Toyota", model: "Supra", maxSpeed: 320, year: ._2000, drive: .front, engine: .start, window: .close)
 
+pajero.engine = .stop
+print(pajero.engine)
+pajero.engine = .start
+
+pajero.trunk = ._50
+print(pajero.trunk)
 
 pajero.description()
+prado.description()
 lancerEvolution.description()
+supra.description()
 
 
