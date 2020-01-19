@@ -35,6 +35,7 @@ class Car {
     
     //    Свойства
     var brand: String
+    var model: String
     var year: yearState
     var engine: engineState
     var window: windowState
@@ -60,8 +61,9 @@ class Car {
         case close = "окна закрыты"
     }
 
-    init(brand: String, year: yearState, engine: engineState, window: windowState) {
+    init(brand: String, model: String, year: yearState, engine: engineState, window: windowState) {
         self.brand = brand
+        self.model = model
         self.year = year
         self.engine = engine
         self.window = window
@@ -81,14 +83,15 @@ class Car {
     }
 //    Метод вывода свойств экземпляров структур
     func description() {
-        var avto: String = "Автомобиль: "
-        avto += "\(brand), "
-        avto += "год выпуска \(year.rawValue), "
+        var auto: String = "Автомобиль: "
+        auto += "\(brand), "
+        auto += "модель \(model), "
+        auto += "год выпуска \(year.rawValue), "
 //        avto += "объём багажника \(trunkVolume.rawValue) литров, "
-        avto += "\(engine.rawValue), "
-        avto += "\(window.rawValue), "
+        auto += "\(engine.rawValue), "
+        auto += "\(window.rawValue), "
 //        avto += "багажник загружен на \(trunk.rawValue) %"
-        print(avto)
+        print(auto)
     }
 }
 
@@ -111,11 +114,11 @@ class TrunkCar: Car {
         case _100 = 100
     }
 
-    init(brand: String, year: yearState, trunkVolume: trunkVolumeState, engine: engineState, window: windowState, trunk: trunkLoad) {
+    init(brand: String, model: String, year: yearState, trunkVolume: trunkVolumeState, engine: engineState, window: windowState, trunk: trunkLoad) {
         self.trunkVolume = trunkVolume
         self.trunk = trunk
         
-        super.init(brand: brand, year: year, engine: engine, window: window)
+        super.init(brand: brand, model: model, year: year, engine: engine, window: window)
     }
 //    Метод загрузить/разгрузить багажник в процентах
     func addtrunk (onOftrunk: trunkLoad) {
@@ -133,7 +136,8 @@ class TrunkCar: Car {
     
     override func description() {
         var auto: String = "Автомобиль: "
-        auto += "\(brand), "
+            auto += "\(brand), "
+            auto += "модель \(model), "
             auto += "год выпуска \(year.rawValue), "
             auto += "объём багажника \(trunkVolume.rawValue) литров, "
             auto += "\(engine.rawValue), "
@@ -154,17 +158,18 @@ class SportCar: Car {
              rear  = "задний"
     }
     
-    init(brand: String, maxSpeed: Int, year: yearState, drive: driveUnit, engine: engineState, window: windowState) {
+    init(brand: String, model: String, maxSpeed: Int, year: yearState, drive: driveUnit, engine: engineState, window: windowState) {
         self.maxSpeed = maxSpeed
         self.drive = drive
         
         
-        super.init(brand: brand, year: year, engine: engine, window: window)
+        super.init(brand: brand, model: model, year: year, engine: engine, window: window)
     }
     
     override func description() {
         var auto: String = "Автомобиль: "
-        auto += "\(brand), "
+            auto += "\(brand), "
+            auto += "модель \(model), "
             auto += "максимальная скорость \(maxSpeed) км/ч, "
             auto += "год выпуска \(year.rawValue), "
             auto += "привод \(drive.rawValue), "
@@ -173,11 +178,15 @@ class SportCar: Car {
             print(auto)
     }
 }
-var trunkCar = TrunkCar(brand: "Mitsubishi", year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
+var pajero = TrunkCar(brand: "Mitsubishi", model: "Pajero", year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
+var prado = TrunkCar(brand: "Toyota", model: "Prado", year: ._1990, trunkVolume: ._200, engine: .start, window: .open, trunk: ._100)
 
-var sportCar = SportCar(brand: "Skoda", maxSpeed: 300, year: ._1970, drive: .front, engine: .start, window: .close)
+var lancerEvolution = SportCar(brand: "Mitsubishi", model: "Lancere Evolution", maxSpeed: 300, year: ._1970, drive: .front, engine: .start, window: .close)
 
-trunkCar.description()
-sportCar.description()
+var supra = SportCar(brand: "Toyota", model: "Supra", maxSpeed: 320, year: ._2000, drive: .front, engine: .start, window: .close)
+
+
+pajero.description()
+lancerEvolution.description()
 
 
