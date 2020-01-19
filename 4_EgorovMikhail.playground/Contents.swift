@@ -173,12 +173,11 @@ class SportCar: Car {
             print(auto)
     }
 }
-var car = Car(brand: "Toyota", year: ._1970, engine: .start, window: .close )
-var car1 = TrunkCar(brand: "Mitsubishi", year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
+var trunkCar = TrunkCar(brand: "Mitsubishi", year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
 
-var sportCar = SportCar(brand: "Shcoda", maxSpeed: 300, year: ._1970, drive: .front, engine: .start, window: .close)
+var sportCar = SportCar(brand: "Skoda", maxSpeed: 300, year: ._1970, drive: .front, engine: .start, window: .close)
 
-car1.description()
+trunkCar.description()
 sportCar.description()
 
 
