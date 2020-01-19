@@ -99,10 +99,10 @@ class TrunkCar: Car {
     
 //      Поречисление возможных объёмов багажника
     enum trunkVolumeState: Int {
-           case _200 = 200
-           case _150 = 150
-           case _100 = 100
-       }
+       case _200 = 200
+       case _150 = 150
+       case _100 = 100
+   }
 //      Перечисления для загрузки/разгрузки багажника в %
     enum trunkLoad: Int {
         case _25 = 25
@@ -133,7 +133,7 @@ class TrunkCar: Car {
     
     override func description() {
         var auto: String = "Автомобиль: "
-            auto += "\(brand), "
+        auto += "\(brand), "
             auto += "год выпуска \(year.rawValue), "
             auto += "объём багажника \(trunkVolume.rawValue) литров, "
             auto += "\(engine.rawValue), "
@@ -144,13 +144,41 @@ class TrunkCar: Car {
     
 }
 
-class sportCar: Car {
+class SportCar: Car {
     
+    var maxSpeed: Int
+    var drive: driveUnit
     
+    enum driveUnit: String {
+        case front = "передний",
+             rear  = "задний"
+    }
+    
+    init(brand: String, maxSpeed: Int, year: yearState, drive: driveUnit, engine: engineState, window: windowState) {
+        self.maxSpeed = maxSpeed
+        self.drive = drive
+        
+        
+        super.init(brand: brand, year: year, engine: engine, window: window)
+    }
+    
+    override func description() {
+        var auto: String = "Автомобиль: "
+        auto += "\(brand), "
+            auto += "максимальная скорость \(maxSpeed) км/ч, "
+            auto += "год выпуска \(year.rawValue), "
+            auto += "привод \(drive.rawValue), "
+            auto += "\(engine.rawValue), "
+            auto += "\(window.rawValue) "
+            print(auto)
+    }
 }
-
+var car = Car(brand: "Toyota", year: ._1970, engine: .start, window: .close )
 var car1 = TrunkCar(brand: "Mitsubishi", year: ._1970, trunkVolume: ._100, engine: .start, window: .close, trunk: ._100)
 
+var sportCar = SportCar(brand: "Shcoda", maxSpeed: 300, year: ._1970, drive: .front, engine: .start, window: .close)
+
 car1.description()
+sportCar.description()
 
 
