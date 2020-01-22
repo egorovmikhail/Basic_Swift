@@ -150,13 +150,25 @@ extension SportCar: CustomStringConvertible {
     }
 }
 
-
-
 var truckCar = TruсkCar(brand: "Камаз", trunkTupe: .refrigerator, year: ._2020, engine: .stop, windows: .close, door: .close)
-truckCar.StopSartEngin()
-print(truckCar.engine.rawValue)
-truckCar.StopSartEngin()
-print(truckCar.engine.rawValue)
 
+var truckCar2 = TruсkCar(brand: "Урал", trunkTupe: .tank, year: ._1999, engine: .stop, windows: .close, door: .close)
+
+var sportCar = SportCar(brand: "Toyota", maxSpeed: "320", year: ._2015, engine: .stop, windows: .close, door: .close)
+
+var sportCar2 = SportCar(brand: "Mitsubishi", maxSpeed: "300", year: ._2010, engine: .stop, windows: .close, door: .close)
+
+print(truckCar.brand, truckCar.engine.rawValue)
+truckCar.StopSartEngin()
+print(truckCar.brand, truckCar.engine.rawValue)
+truckCar2.OpenCloseDoor()
+print(truckCar2.brand, truckCar2.door.rawValue)
+truckCar2.StopSartEngin()
+print(truckCar2.brand, truckCar2.engine.rawValue)
+sportCar.OpenCloseWindows()
+print(sportCar.brand, sportCar.windows.rawValue)
 
 print(truckCar)
+print(truckCar2)
+print(sportCar)
+print(sportCar2)
