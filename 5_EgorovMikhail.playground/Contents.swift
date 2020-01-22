@@ -21,10 +21,10 @@
 import UIKit
 
 enum YearState: Int {
-    case _1970 = 1970
-    case _1980 = 1980
-    case _1990 = 1990
-    case _2000 = 2000
+    case _1999 = 1999
+    case _2010 = 2010
+    case _2015 = 2015
+    case _2020 = 2020
 }
 //    Перечисления запуска/остановки двигателя
 enum EngineState: String {
@@ -46,25 +46,16 @@ enum DoorState: String {
 protocol Car {
 //    Свойства
     var brand: String { get }
-    var model: String { get }
     var year: YearState { get }
     var engine: EngineState { get set }
     var windows: WindowState { get set }
     var door: DoorState { get set }
     
-    init(brand: String, model: String, year: YearState, engine: EngineState, windows: WindowState, door: DoorState)
-    
+    func StopSartEngin()
 }
 
 extension Car {
-    mutating func StopSartEngin() {
-        switch engine {
-            case .start:
-                return self.engine = EngineState.stop
-            case .stop:
-                return self.engine = EngineState.start
-        }
-    }
+
     mutating func OpenCloseWindows() {
         switch windows {
             case .close:
@@ -73,6 +64,7 @@ extension Car {
                 return self.windows = WindowState.close
         }
     }
+    
     mutating func OpenCloseDoor() {
         switch door {
             case .close:
@@ -83,36 +75,88 @@ extension Car {
     }
 }
 
-class TrunkCar: Car {
+class TruсkCar: Car {
+    
+    enum TruсkTupe: String{
+        case dump = "самосвал"
+        case tank = "цистерна"
+        case refrigerator = "морозильная камера"
+    }
     
     var brand: String
-    var model: String
+    var trunkTupe: TruсkTupe
     var year: YearState
     var engine: EngineState
     var windows: WindowState
-    var door: DoorState
+    var door: DoorState = .close
     
-    required init(brand: String, model: String, year: YearState, engine: EngineState, windows: WindowState, door: DoorState) {
+    init(brand: String, trunkTupe: TruсkTupe, year: YearState, engine: EngineState, windows: WindowState, door: DoorState) {
         self.brand = brand
-        self.model = model
         self.year = year
+        self.trunkTupe = trunkTupe
         self.engine = engine
         self.windows = windows
         self.door = door
     }
     
+    func StopSartEngin() {
+        switch engine {
+            case .start:
+                return self.engine = EngineState.stop
+            case .stop:
+                return self.engine = EngineState.start
+        }
+    }
+}
+extension TruсkCar: CustomStringConvertible {
+
+    var description: String {
+        return "\nГрузовой автомобиль \(brand) \n\tтип кузова \(trunkTupe.rawValue) \n\tгод выпуска \(year.rawValue)  \n\t\(engine.rawValue) \n\t\(windows.rawValue) \n\t\(door.rawValue)"
+    }
+}
+
+class SportCar: Car {
     
+    var brand: String
+    var maxSpeed: String
+    var year: YearState
+    var engine: EngineState
+    var windows: WindowState
+    var door: DoorState
+    
+    init(brand: String, maxSpeed: String, year: YearState, engine: EngineState, windows: WindowState, door: DoorState) {
+        self.brand = brand
+        self.year = year
+        self.maxSpeed = maxSpeed
+        self.engine = engine
+        self.windows = windows
+        self.door = door
+    }
+    
+    func StopSartEngin() {
+        switch engine {
+            case .start:
+                return self.engine = EngineState.stop
+            case .stop:
+                return self.engine = EngineState.start
+        }
+    }
+}
+
+extension SportCar: CustomStringConvertible {
+
+    var description: String {
+        return "\nСпортивный автомобиль \(brand) \n\tгод выпуска \(year.rawValue) \n\tмаксимальная скорость \(maxSpeed) км/ч \n\t\(engine.rawValue) \n\t\(windows.rawValue) \n\t\(door.rawValue)"
+    }
 }
 
 
-//class SportCar {
-//}
 
-var car = TrunkCar(brand: "Mitsubishi", model: "Sprinter", year: ._1970, engine: .stop, windows: .close, door: .close)
-
-car.StopSartEngin()
-print(car.engine.rawValue)
-car.StopSartEngin()
-print(car.engine.rawValue)
+var truckCar = TruсkCar(brand: "Камаз", trunkTupe: .refrigerator, year: ._2020, engine: .stop, windows: .close, door: .close)
+truckCar.StopSartEngin()
+print(truckCar.engine.rawValue)
+truckCar.StopSartEngin()
+print(truckCar.engine.rawValue)
 
 
+print(truckCar)
