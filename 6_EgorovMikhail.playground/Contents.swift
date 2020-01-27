@@ -15,9 +15,11 @@ struct Queue<Element> {
     mutating func push(_ item: Element) {
         items.append(item)
     }
+//    раз колекция очередь то удаляю логически первый элемент, а не последний
     mutating func pop() -> Element {
         return items.removeFirst()
     }
+//    добавляю три функции
     var count: Int {
         return items.count
     }
@@ -48,6 +50,6 @@ name.count
 name.lastItem
 name.firstItem
 print(name.items)
-
 name[9]
+name[2]
 
