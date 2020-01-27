@@ -27,12 +27,13 @@ struct Queue<Element> {
     var firstItem: Element? {
         return items.isEmpty ? nil : items.first
     }
-//    subscript(i: Int) -> Element {
-//        return items[i]
-//    }
+    subscript (index: Int) -> Element? {
+        return index > items.count ? nil : items[index]
+    }
 }
 
 var name = Queue<String>()
+
 
 
 name.push("Masha")
@@ -47,4 +48,6 @@ name.count
 name.lastItem
 name.firstItem
 print(name.items)
+
+name[9]
 
