@@ -18,22 +18,33 @@ struct Queue<Element> {
     mutating func pop() -> Element {
         return items.removeFirst()
     }
+    var count: Int {
+        return items.count
+    }
+    var lastItem: Element? {
+        return items.isEmpty ? nil : items.last
+    }
+    var firstItem: Element? {
+        return items.isEmpty ? nil : items.first
+    }
+//    subscript(i: Int) -> Element {
+//        return items[i]
+//    }
 }
 
-
 var name = Queue<String>()
-var numer = Queue<Int>()
 
 
 name.push("Masha")
 name.push("Dasha")
 name.push("Olga")
+name.push("Sasha")
+name.push("Igor")
+name.push("Denis")
+name.push("Sveta")
 //name.pop()
-
-numer.push(12)
-numer.push(45)
-numer.push(38)
-
+name.count
+name.lastItem
+name.firstItem
 print(name.items)
-print(numer.items)
 
