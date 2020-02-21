@@ -129,9 +129,8 @@ extension GameScene: SKPhysicsContactDelegate {
                 createApple()
             
             case CollisionCategories.EdgeBody :
+                //  Домашние задание
             break
-//                Домашние задание
-            
             
             default:
             break
